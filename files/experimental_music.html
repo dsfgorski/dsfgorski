@@ -1,11 +1,11 @@
 
-$Win32ShowWindowAsync = Add-Type –memberDefinition @” 
-[DllImport("user32.dll")] 
-public static extern bool ShowWindowAsync(IntPtr hWnd, int nCmdShow); 
-“@ -name “Win32ShowWindowAsync” -namespace Win32Functions –passThru
-
-$A = Get-Process| Where-Object {$_.Name -eq "chrome" -and $_.MainWindowTitle };
-Start-Process chrome "https://www.youtube.com/watch?v=b0Kj2XSCSQI --new-window"
-while (Get-Process -Name chrome |Where-Object {$_.MainWindowTitle -eq $A.MainWindowTitle}) {};
-$Win32ShowWindowAsync::ShowWindowAsync((Get-Process -PID $A.Id|Where-Object {$_.MainWindowTitle }).MainWindowHandle, 6) | Out-Null
+$Win32ShowWindowAsync = Add-Type –memberDefinition @” <br>
+[DllImport("user32.dll")] <br>
+public static extern bool ShowWindowAsync(IntPtr hWnd, int nCmdShow); <br>
+“@ -name “Win32ShowWindowAsync” -namespace Win32Functions –passThru<br>
+<br>
+$A = Get-Process| Where-Object {$_.Name -eq "chrome" -and $_.MainWindowTitle };<br>
+Start-Process chrome "https://www.youtube.com/watch?v=b0Kj2XSCSQI --new-window"<br>
+while (Get-Process -Name chrome |Where-Object {$_.MainWindowTitle -eq $A.MainWindowTitle}) {};<br>
+$Win32ShowWindowAsync::ShowWindowAsync((Get-Process -PID $A.Id|Where-Object {$_.MainWindowTitle }).MainWindowHandle, 6) | Out-Null<br>
 
